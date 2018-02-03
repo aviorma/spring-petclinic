@@ -19,4 +19,3 @@ RUN mvn package -DskipTests
 EXPOSE 9966
 
 ENTRYPOINT ["mvn", "spring-boot:run"]
-# ENTRYPOINT ["mvn", "tomcat7:run", "-Dtsa_hostname=tsa"]
