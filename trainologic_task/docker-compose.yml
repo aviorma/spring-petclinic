@@ -7,7 +7,7 @@ services:
       - "3306:3306"
     environment:
       - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=test
+      - MYSQL_DATABASE=petclinic
     volumes:
       - "./conf.d:/etc/mysql/conf.d:ro"
     networks:
@@ -17,9 +17,9 @@ services:
     image: nginx:latest
     container_name: nginx
     ports:
-      - "8000:80"
+      - "7009:80"
     build:
-      context: ../..
+      context: nginx
       dockerfile: Dockerfile
     volumes:
       - ./nginx/conf.d:/etc/nginx/conf.d
@@ -30,19 +30,20 @@ services:
     image: petclinic:latest
     container_name: petclinic_node_1
     build:
-      context: ../..
+      context: petclinic
       dockerfile: Dockerfile
     ports:
-      - "8990:3306"
+      - "7002:8080"
+      - "7004:3306"
     networks:
       - petclinic
-
 
   petclinic_2:
     image: petclinic:latest
     container_name: petclinic_node_2
     ports:
-      - "8989:3306"
+      - "7003:8080"
+      - "7005:3306"
     networks:
       - petclinic
 

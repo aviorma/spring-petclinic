@@ -16,6 +16,6 @@ WORKDIR /usr/src/app/
 RUN mvn package -DskipTests
 
 # expose the web app port.
-EXPOSE 9966
+EXPOSE 8080
 
 ENTRYPOINT ["mvn", "spring-boot:run"]
